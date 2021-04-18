@@ -4,7 +4,7 @@ import UserPage from './Components/UserPage/UserPage';
 import UserPostPage from './Components/UserPostPage/UserPostPage'
 import './App.css';
 
-export default class App extends Component {
+class App extends Component {
 
   renderMainRoutes(){
     return (
@@ -33,5 +33,4 @@ export default class App extends Component {
   }
 }
 
-
-
+export default App;
