@@ -8,8 +8,8 @@ export default class UserPostPage extends Component{
         return(
             <div>
                 <h2>Name's Posts</h2>
-                <TableStyle/>
-                <button className='back-btn'>BACK</button>
+                
+                <button className='back-btn' onClick={() => this.props.history.goBack()}>BACK</button>
             </div>
         )
     }

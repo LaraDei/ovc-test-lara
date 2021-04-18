@@ -11,3 +11,6 @@ table, th, td {
     border-collapse: collapse;
     padding: 8px 18px;
   }
+  tbody tr:hover {
+    background-color: #ffff99;
+  }
