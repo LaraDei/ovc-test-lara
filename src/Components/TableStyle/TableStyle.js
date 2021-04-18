@@ -14,11 +14,11 @@ export default class TableStyle extends Component{
     renderTableBody(){
         return this.props.data.map(item => {
            return (
-               <tr key={item.userId} id={item.userId} onClick={(e)=>this.props.function(e)}>
+               <tr key={item.id} id={item.id} onClick={(e)=>this.props.function(e)}>
                    {Object.keys(item).map((key, index) => {
                         if(index >0){
                             return (
-                            <td key={item[key]}>{item[key]}</td>
+                            <td key={key + index}>{item[key]}</td>
                             )
                         }else return null;
                 })}

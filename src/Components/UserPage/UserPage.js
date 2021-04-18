@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar';
 import TableStyle from '../TableStyle/TableStyle';
-import {getUsers} from '../../Store/usersSlice';
+import {getUsers, filterUsers} from '../../Store/usersSlice';
 
 
 class UserPage extends Component{
-  static defaultProps = {
-    history: {
-      push: () => {}
-    }
-}
+  constructor(props){
+    super()
+      this.state = {
+        userList: []
+      }
+  }
   componentDidMount(){
     this.props.getUsers();
+    this.setState({userList: this.props.users.users})
   };
 
   handleClick(e){
@@ -20,11 +22,20 @@ class UserPage extends Component{
     let userId = e.target.parentElement.id
     this.props.history.push(`/post/${userId}`)
   }
-  
+
+  handleSearch = (e) => {
+    e.preventDefault()
+    const {search} = e.target
+    const term = search.value.toLowerCase()
+    const users = this.props.users.users
+    const filteredUsers =this.props.filterUsers(term, 'name', users)
+    this.setState({userList: filteredUsers.payload})
+    document.getElementById("searchInput").value=''
+};
   render(){
-    const usersData = this.props.users.users.map(user => {
+    const usersData = this.state.userList.map(user => {
       return {
-        userId: user.id,
+        id: user.id,
         name: user.name,
         email: user.email,
         city: user.address.city,
@@ -34,7 +45,7 @@ class UserPage extends Component{
     const headerList = ['Name','Email','City','Company'];
     return(
         <div className="user-page">
-          <SearchBar/>
+          <SearchBar data={usersData} function={(e)=>this.handleSearch(e)}/>
           <h1>List of Users</h1>
           <TableStyle columns={headerList} data={usersData} function={(e)=>this.handleClick(e)}/>
         </div>
@@ -48,7 +59,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = () => {
   return {
-    getUsers
+    getUsers,
+    filterUsers
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps())(UserPage);
