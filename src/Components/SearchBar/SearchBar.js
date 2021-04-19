@@ -5,7 +5,6 @@ import './SearchBar.css';
 export default class SearchBar extends Component{    
 
     render(){
-        // console.log(this.props.data)
         return(
             <div className="search-container">
                 <form>

@@ -29,9 +29,11 @@ export default class TableStyle extends Component{
 
 
     render(){
+        const {data, columns} = this.props
         return(
             <div className="table-container">
-                <table className="table">
+                {data && columns ?
+                    <table className="table">
                     <thead>
                         <tr>
                             {this.renderTableHeader()}
@@ -40,8 +42,9 @@ export default class TableStyle extends Component{
                     <tbody>
                         {this.renderTableBody()}
                     </tbody>
-                </table>
-                
+                    </table>
+                : <p>"no data"</p>
+                }
             </div>
         )
     }

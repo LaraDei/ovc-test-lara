@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableStyle component renders by default 1`] = `
+<div
+  className="table-container"
+>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          test1
+        </th>
+        <th>
+          test2
+        </th>
+        <th>
+          test3
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        id={123}
+        onClick={[Function]}
+      >
+        <td>
+          testName
+        </td>
+        <td>
+          testEmal
+        </td>
+        <td>
+          testCity
+        </td>
+        <td>
+          testCompany
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`TableStyle component renders the UI as expected 1`] = `
+<div
+  className="table-container"
+>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          test1
+        </th>
+        <th>
+          test2
+        </th>
+        <th>
+          test3
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        id={123}
+        onClick={[Function]}
+      >
+        <td>
+          testName
+        </td>
+        <td>
+          testEmal
+        </td>
+        <td>
+          testCity
+        </td>
+        <td>
+          testCompany
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`TableStyle component renders the UI as expected with empty props 1`] = `
+<div
+  className="table-container"
+>
+  <table
+    className="table"
+  >
+    <thead>
+      <tr>
+        <th>
+          test1
+        </th>
+        <th>
+          test2
+        </th>
+        <th>
+          test3
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        id={123}
+        onClick={[Function]}
+      >
+        <td>
+          testName
+        </td>
+        <td>
+          testEmal
+        </td>
+        <td>
+          testCity
+        </td>
+        <td>
+          testCompany
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

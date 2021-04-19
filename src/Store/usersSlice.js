@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import  Axios  from 'axios'
 
 export const getUsers = createAsyncThunk(
-  'Store/getUsers',
-  async (dispatch, getState) => {
-    const response = await Axios.get(
+  'users/getUsers',
+  async () => {
+    const respose = await Axios.get(
       'https://jsonplaceholder.typicode.com/users'
     );
-    return response.data
+    return respose.data;
   }
 );
 
@@ -16,22 +16,26 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState:{
     users: [],
-    status: null,
+    isLoading: false,
+    hasError: false
   },
   reducers: {
   },
   extraReducers:{
     [getUsers.pending]: (state, action)=>{
-      state.status = 'loading'
+      state.isLoading = true
+      state.hasError = false
     },
     [getUsers.fulfilled]: (state, action)=>{
       state.users = action.payload
-      state.status = 'success'
+      state.isLoading = false
+      state.hasError = false
     },
     [getUsers.rejected]: (state, action)=>{
-      state.status = 'failed'
+      state.isLoading = false
+      state.hasError = true
     },
   }
 });
-
+// export const selectAllUsers = (state) => state.users.users;
 export default usersSlice.reducer;

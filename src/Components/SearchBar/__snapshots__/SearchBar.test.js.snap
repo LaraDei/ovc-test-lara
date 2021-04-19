@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar component renders by default 1`] = `
+<div
+  className="search-container"
+>
+  <form>
+    <input
+      id="searchInput"
+      name="search"
+      onChange={[Function]}
+      placeholder="Search.."
+      type="text"
+    />
+    <button
+      type="clear"
+    >
+      Clear
+    </button>
+  </form>
+</div>
+`;

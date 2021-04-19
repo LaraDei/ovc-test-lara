@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar';
 import TableStyle from '../TableStyle/TableStyle';
-import {getUsers} from '../../Store/usersSlice';
 import {store} from '../../Store/store'
 
-class UserPage extends Component{
+export default class UserPage extends Component{
   constructor(props){
     super()
       this.state = {
         searchTerm: ''
       }
   }
-
-  componentDidMount(){
-    this.props.getUsers();
-  };
 
   handleClick(e){
     e.preventDefault()
@@ -40,7 +34,6 @@ class UserPage extends Component{
 // export const findItem = (searchTerm)
   render(){
     const users = this.getFilteredUsers(this.state.searchTerm)
-    console.log(users)
     const usersData = users.map(user => {
       return {
         id: user.id,
@@ -63,15 +56,15 @@ class UserPage extends Component{
     )
     }
 }
-const mapStateToProps = (state) => {
-  return {
-    users : state.users
-  }
-};
-const mapDispatchToProps = () => {
-  return {
-    getUsers
-  }
-};
-export default connect(mapStateToProps, mapDispatchToProps())(UserPage);
+// const mapStateToProps = (state) => {
+//   return {
+//     users : state.users
+//   }
+// };
+// const mapDispatchToProps = () => {
+//   return {
+//     getUsers
+//   }
+// };
+// export default connect(mapStateToProps, mapDispatchToProps())(UserPage);
 

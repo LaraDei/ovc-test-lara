@@ -3,7 +3,7 @@ import  Axios  from 'axios'
 
 export const getPosts = createAsyncThunk(
   'Store/getPosts',
-  async (userId, dispatch, getState) => {
+  async (userId, thunkAPI) => {
     const response = await Axios.get(
       `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
     );
