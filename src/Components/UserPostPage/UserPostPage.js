@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import {getPosts} from '../../Store/postsSlice';
 import TableStyle from '../TableStyle/TableStyle';
+import {store} from '../../Store/store'
 
 class UserPostPage extends Component{
 
@@ -10,13 +11,22 @@ class UserPostPage extends Component{
         const {userId} = this.props.match.params
         this.props.getPosts(userId);
       };
-    getName(id){
-        // eslint-disable-next-line eqeqeq
-        const currUser = this.props.users.users.find(user => user.id == id)
+
+    getName(id, users){
+        // const {users} = store.getState().users
+        console.log(id)
+        console.log(users)
+        const currUser = users.find(user => user.id == id)
+        console.log(currUser)
         return currUser.name
     }
+
     render(){
-        const postsData = this.props.posts.posts.map(post => {
+      const {userId} = this.props.match.params
+      const {users} = store.getState().users
+      const userName = this.getName(userId, users) || {content: ''}
+      const {posts} = store.getState().posts
+        const postsData = posts.map(post => {
             return {
               id: post.id,
               title: post.title,
@@ -24,8 +34,6 @@ class UserPostPage extends Component{
             }
           });
           const headerList = ['Title', 'Body']
-          const {userId} = this.props.match.params
-          const userName = this.getName(userId) || {content: ''}
         return(
             <div>
                 <button className='back-btn' onClick={() => this.props.history.goBack()}>BACK</button>
@@ -38,7 +46,6 @@ class UserPostPage extends Component{
 
 const mapStateToProps = (state) => {
     return {
-      users : state.users,
       posts : state.posts,
     }
   };

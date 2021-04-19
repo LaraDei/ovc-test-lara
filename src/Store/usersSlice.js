@@ -1,4 +1,4 @@
-import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import  Axios  from 'axios'
 
 export const getUsers = createAsyncThunk(
@@ -10,21 +10,13 @@ export const getUsers = createAsyncThunk(
     return response.data
   }
 );
-export const filterUsers = createAction(
-  'Store/updateValueByName',
-    (term, category, list)=>{
-      const result = list.filter(item => 
-        item[category].toLowerCase().includes(term)
-    )
-    return{
-      payload: result
-    }}
-)
+
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState:{
     users: [],
-    status: null
+    status: null,
   },
   reducers: {
   },
@@ -41,6 +33,5 @@ export const usersSlice = createSlice({
     },
   }
 });
-
 
 export default usersSlice.reducer;

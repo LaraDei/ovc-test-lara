@@ -8,10 +8,9 @@ export default class SearchBar extends Component{
         // console.log(this.props.data)
         return(
             <div className="search-container">
-                <h2>Search</h2>
-                <form onSubmit={(e)=>this.props.function(e)}>
-                <input type="text" placeholder="Search.." name="search" id="searchInput"/>
-                <button type="submit">Submit</button>
+                <form>
+                <input type="text" placeholder="Search.." name="search" id="searchInput" onChange={(e)=>this.props.setTerm(e)}/>
+                <button type="clear" onClick={this.props.clearTerm}>Clear</button>
                 </form>
             </div>
         )

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar';
 import TableStyle from '../TableStyle/TableStyle';
-import {getUsers, filterUsers} from '../../Store/usersSlice';
-
+import {getUsers} from '../../Store/usersSlice';
+import {store} from '../../Store/store'
 
 class UserPage extends Component{
   constructor(props){
     super()
       this.state = {
-        userList: []
+        searchTerm: ''
       }
   }
+
   componentDidMount(){
     this.props.getUsers();
-    this.setState({userList: this.props.users.users})
   };
 
   handleClick(e){
@@ -23,17 +23,25 @@ class UserPage extends Component{
     this.props.history.push(`/post/${userId}`)
   }
 
-  handleSearch = (e) => {
+  setSearchTerm = (e) => {
     e.preventDefault()
-    const {search} = e.target
-    const term = search.value.toLowerCase()
-    const users = this.props.users.users
-    const filteredUsers =this.props.filterUsers(term, 'name', users)
-    this.setState({userList: filteredUsers.payload})
-    document.getElementById("searchInput").value=''
-};
+    const searchTerm = e.target.value.toLowerCase()
+    this.setState({searchTerm: searchTerm})
+  };
+  clearSearchTerm = () => {
+    this.setState({searchTerm: ''})
+  };
+
+  getFilteredUsers = (searchTerm)=> {
+    const {users} = store.getState().users
+    return users.filter(user => user.name.toLowerCase().includes(searchTerm));
+  };
+
+// export const findItem = (searchTerm)
   render(){
-    const usersData = this.state.userList.map(user => {
+    const users = this.getFilteredUsers(this.state.searchTerm)
+    console.log(users)
+    const usersData = users.map(user => {
       return {
         id: user.id,
         name: user.name,
@@ -45,8 +53,11 @@ class UserPage extends Component{
     const headerList = ['Name','Email','City','Company'];
     return(
         <div className="user-page">
-          <SearchBar data={usersData} function={(e)=>this.handleSearch(e)}/>
-          <h1>List of Users</h1>
+          <div className="user-search-wrapper"> 
+            <h3>Search Users By Name:</h3>
+            <SearchBar data={usersData} setTerm={(e)=>this.setSearchTerm(e)} clearTerm={()=>this.clearSearchTerm}/>
+          </div>
+          <h2>List of Users</h2>
           <TableStyle columns={headerList} data={usersData} function={(e)=>this.handleClick(e)}/>
         </div>
     )
@@ -59,8 +70,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = () => {
   return {
-    getUsers,
-    filterUsers
+    getUsers
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps())(UserPage);
