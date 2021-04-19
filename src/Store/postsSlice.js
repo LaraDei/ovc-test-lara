@@ -1,37 +1,35 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import  Axios  from 'axios'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Axios from "axios";
 
 export const getPosts = createAsyncThunk(
-  'Store/getPosts',
+  "Store/getPosts",
   async (userId, thunkAPI) => {
     const response = await Axios.get(
       `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
     );
-    return response.data
+    return response.data;
   }
 );
 
 export const postsSlice = createSlice({
-  name: 'posts',
-  initialState:{
+  name: "posts",
+  initialState: {
     posts: [],
-    status: null
+    status: null,
   },
-  reducers: {
+  reducers: {},
+  extraReducers: {
+    [getPosts.pending]: (state, action) => {
+      state.status = "loading";
+    },
+    [getPosts.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+      state.status = "success";
+    },
+    [getPosts.rejected]: (state, action) => {
+      state.status = "failed";
+    },
   },
-  extraReducers:{
-    [getPosts.pending]: (state, action)=>{
-      state.status = 'loading'
-    },
-    [getPosts.fulfilled]: (state, action)=>{
-      state.posts = action.payload
-      state.status = 'success'
-    },
-    [getPosts.rejected]: (state, action)=>{
-      state.status = 'failed'
-    },
-  }
 });
-
 
 export default postsSlice.reducer;
