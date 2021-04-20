@@ -28,7 +28,7 @@ class UserPostPage extends Component {
       <div>
         <button
           className="back-btn"
-          onClick={() => this.props.history.goBack()}
+          onClick={() => this.props.history.push('/')}
         >
           BACK
         </button>
