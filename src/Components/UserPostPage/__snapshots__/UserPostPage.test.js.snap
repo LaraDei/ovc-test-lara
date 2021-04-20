@@ -32,3 +32,36 @@ exports[`UserPostPage component it renders by default 1`] = `
   </div>
 </div>
 `;
+
+exports[`UserPostPage component renders by default 1`] = `
+<div>
+  <button
+    className="back-btn"
+    onClick={[Function]}
+  >
+    BACK
+  </button>
+  <h2>
+    's Posts
+  </h2>
+  <div
+    className="table-container"
+  >
+    <table
+      className="table"
+    >
+      <thead>
+        <tr>
+          <th>
+            Title
+          </th>
+          <th>
+            Body
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
+`;

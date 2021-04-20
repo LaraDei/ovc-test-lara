@@ -31,7 +31,6 @@ export default class UserPage extends Component {
     return users.filter((user) => user.name.toLowerCase().includes(searchTerm));
   };
 
-  // export const findItem = (searchTerm)
   render() {
     const users = this.getFilteredUsers(this.state.searchTerm);
     const usersData = users.map((user) => {
@@ -64,14 +63,3 @@ export default class UserPage extends Component {
     );
   }
 }
-// const mapStateToProps = (state) => {
-//   return {
-//     users : state.users
-//   }
-// };
-// const mapDispatchToProps = () => {
-//   return {
-//     getUsers
-//   }
-// };
-// export default connect(mapStateToProps, mapDispatchToProps())(UserPage);

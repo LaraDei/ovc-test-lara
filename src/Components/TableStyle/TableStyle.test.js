@@ -26,8 +26,5 @@ describe("TableStyle component", () => {
     const wrapper = renderer.create(<TableStyle {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("renders a header for each item in given array", () => {});
-  it("it renders a row for each item in given array", () => {});
-  it("it executes a function when row is clicked", () => {});
+  
 });

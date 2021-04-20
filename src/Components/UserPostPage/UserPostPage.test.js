@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "../../setupTests"
+import { shallow } from 'enzyme';
 import renderer from "react-test-renderer";
 import UserPostPage from "./UserPostPage";
 import { Provider } from "react-redux";
 import { store } from "../../Store/store";
+import sinon from 'sinon';
+
 
 describe("UserPostPage component", () => {
   const props = {
@@ -57,7 +61,7 @@ describe("UserPostPage component", () => {
     );
     ReactDOM.unmountComponentAtNode(div);
   });
-  it("it renders by default", () => {
+  it("renders by default", () => {
     const wrapper = renderer
       .create(
         <Provider store={store}>
@@ -70,5 +74,4 @@ describe("UserPostPage component", () => {
       .toJSON();
     expect(wrapper).toMatchSnapshot();
   });
-  it("it executes a function when back btn is clicked", () => {});
 });
